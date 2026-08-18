@@ -395,7 +395,7 @@
       </div>
       <div class="pricing-card">
         <h3>Pro Subscription</h3>
-        <div class="price">$1.99</div>
+        <div class="price">$.99</div>
         <div class="price-note">billed monthly</div>
         <ul>
           <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l3.5 3.5L12 3"/></svg>Full app access</li>
@@ -407,7 +407,7 @@
       <div class="pricing-card popular">
         <div class="popular-badge">BEST VALUE</div>
         <h3>Lifetime Access</h3>
-        <div class="price">$10<spanone-time</span></div>
+        <div class="price">$4.99<span>one-time</span></div>
         <div class="price-note">One-time payment, yours forever</div>
         <ul>
           <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l3.5 3.5L12 3"/></svg>Everything in Free Trial</li>
@@ -423,7 +423,8 @@
   <div class="container" style="max-width:720px;">
     <div class="section-label">Legal</div>
     <h2 style="font-size:clamp(24px,4vw,38px);font-weight:900;letter-spacing:-1.5px;margin-bottom:24px;">Privacy Policy</h2>
-    <p style="font-size:10pt;color:var(--text-2);line-height:1.8;margin-bottom:20px;">PrivaSee Cam is designed with privacy as its core principle. We collect, store, or transmit <strong style="color:var(--text);">no personal data, usage data, or analytics</strong> about our users. The app processes photos entirely on your device — no data leaves your phone unless you explicitly choose to share a photo yourself.</p>
+    <p style="font-size:10pt;color:var(--text-2);line-height:1.8;margin-bottom:20px;">The PrivaSee Cam iOS app is designed with privacy as its core principle. The app collects, stores, or transmits <strong style="color:var(--text);">no personal data, usage data, or analytics</strong>. Photos are processed entirely on your device — no data leaves your phone unless you explicitly choose to share a photo yourself.</p>
+    <p style="font-size:10pt;color:var(--text-2);line-height:1.8;margin-bottom:20px;"><strong style="color:var(--text);">This website:</strong> The marketing site uses Firebase Analytics (Google Analytics) to measure visits and App Store clicks. It does not collect photos, location, or account information. You can opt out with browser tracking protection or an ad blocker.</p>
     <p style="font-size:10pt;color:var(--text-2);line-height:1.8;margin-bottom:20px;"><strong style="color:var(--text);">What PrivaSee Cam does not collect:</strong></p>
     <ul style="list-style:none;margin-bottom:20px;">
       <li style="font-size:10pt;color:var(--text-2);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start;"><svg viewBox="0 0 14 14" fill="none" stroke="var(--accent)" stroke-width="2" style="width:14px;height:14px;flex-shrink:0;margin-top:2px;"><path d="M2 7l3.5 3.5L12 3"/></svg>No location, GPS, or geolocation data</li>
@@ -471,10 +472,36 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 PrivaSee Cam. All rights reserved. No data collected.</p>
+      <p>© 2026 PrivaSee Cam. All rights reserved. The app collects no data.</p>
       <p>Made with privacy in mind.</p>
     </div>
   </div>
 </footer>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDF7lXg2wMtCQro2VtJ6pK0Z977_FbPOUQ",
+    authDomain: "privaseecam.firebaseapp.com",
+    projectId: "privaseecam",
+    storageBucket: "privaseecam.firebasestorage.app",
+    messagingSenderId: "1048159887226",
+    appId: "1:1048159887226:web:2321d3093abeb8bfdac0c3",
+    measurementId: "G-77PX2FG9KZ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      logEvent(analytics, "select_content", {
+        content_type: "app_store",
+        item_id: "download"
+      });
+    });
+  });
+</script>
 </body>
 </html>
